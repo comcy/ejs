@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "removeComments": true,
+    "sourceMap": true,
+    "sourceRoot": "./src",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "noEmitOnError": true,
+    "experimentalDecorators": true,
+    "declaration": true,
+    "outDir": "./dist",
+    "lib": [
+      "es2016",
+      "dom"
+    ]
+  },
+  "include": [
+    "src/",
+    "src/**/*.ejs",
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "src/**/*.spec.ts*/"
+  ]
+}

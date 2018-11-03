@@ -1,0 +1,41 @@
+{
+    "name": "ejs",
+    "version": "0.1.1",
+    "description": "This is minimal markdown to html parser which can interprete any markdown input and generate a html file from its content.",
+    "author": "Christian Silfang",
+    "license": "MIT",
+    "scripts": {
+        "copy": "node tools/copy-files.js",
+        "cleanup": "node tools/cleanup-package.js",
+        "publish": "npm publish dist",
+        "build": "npm run rimraf:dist && npm run copy && npm run tsc && npm run ejs && npm run cleanup",
+        "tsc": "tsc",
+        "ejs": "find ./src -name '*.ejs' -type f -exec cp --parents {} ./dist \\;",
+        "rimraf:dist": "rimraf ./dist",
+        "live:dev": "nodemon --watch src --exec \"npm run build && npm run start\"",
+        "start": "ts-node ./src/index.ts"
+    },
+    "main": "server",
+    "types": "server",
+    "dependencies": {
+        "ejs": "^2.6.1",
+        "express": "^4.16.4",
+        "gulp": "^3.9.1",
+        "gulp-typescript": "^5.0.0-alpha.3",
+        "minimist": "^1.2.0",
+        "mkdirp": "^0.5.1",
+        "showdown": "^1.8.7"
+    },
+    "devDependencies": {
+        "@types/node": "^10.12.2",
+        "babel-cli": "^6.26.0",
+        "del": "^2.2.2",
+        "nodemon": "^1.18.5",
+        "rimraf": "^2.6.1",
+        "rollup": "^0.51.8",
+        "rollup-plugin-commonjs": "^8.2.6",
+        "rollup-plugin-node-resolve": "^3.0.0",
+        "ts-node": "^7.0.1",
+        "typescript": "^3.1.5"
+    }
+}
