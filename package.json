@@ -1,6 +1,6 @@
 {
     "name": "ejs",
-    "version": "0.1.1",
+    "version": "0.1.0",
     "description": "This is minimal markdown to html parser which can interprete any markdown input and generate a html file from its content.",
     "author": "Christian Silfang",
     "license": "MIT",
