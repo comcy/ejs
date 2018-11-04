@@ -1,6 +1,7 @@
 import * as express from 'express';
 var app = express();
 
+
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 
@@ -13,7 +14,6 @@ app.get('/', function(req, res) {
 app.get('/about', function(req, res) {
     res.render('pages/about');
 });
-
 
 app.listen(8080);
 console.log('Open http://localhost:8080');
