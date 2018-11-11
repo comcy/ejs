@@ -2,8 +2,6 @@ var gulp = require("gulp");
 var tslint = require('gulp-tslint');
 var ts = require("gulp-typescript");
 var tsProject = ts.createProject("tsconfig.json");
-var inject = require('gulp-inject');
-var webserver = require('gulp-webserver');
 var htmlclean = require('gulp-htmlclean');
 var cleanCSS = require('gulp-clean-css');
 var concat = require('gulp-concat');
@@ -105,18 +103,8 @@ gulp.task("additional:dist", function () {
 // Copy tasks bundle
 gulp.task('copy:dist', ['views:dist', 'styles:dist', 'js:dist', 'typescript:dist', 'additional:dist']);
 
-// Inject task for automatically add dependencies to `index.html`
-gulp.task('inject:dist', ['copy:dist'], function () {
-    var css = gulp.src(paths.distStyles);
-    var js = gulp.src(paths.distJS);
-    return gulp.src(paths.distIndex)
-        .pipe(inject(css, { relative: true }))
-        .pipe(inject(js, { relative: true }))
-        .pipe(gulp.dest(paths.dist));
-});
-
 // Build app to `dist`: Starting point
-gulp.task('build', ['inject:dist']);
+gulp.task('build', ['copy:dist']);
 
 
 //------------------------------------------------------------------
@@ -150,32 +138,24 @@ gulp.task("typescript", function () {
 // Copy tasks bundle 
 gulp.task('copy', ['views', 'styles', 'js', 'typescript']);
 
-// Inject task for automatically add dependencies to `index.html`
-gulp.task('inject', ['copy'], function () {
-    var css = gulp.src(paths.tmpStyles);
-    var js = gulp.src(paths.tmpJS);
-    return gulp.src(paths.tmpIndex)
-        .pipe(inject(js, { relative: true }))
-        .pipe(inject(css, { relative: true }))
-        .pipe(gulp.dest(paths.tmp));
-});
-
 // Serve the application from `tmp` folder
-gulp.task('serve', ['inject'], function () {
-    return gulp.src(paths.tmp)
-        .pipe(webserver({
-            port: 8080,
-            livereload: true
-        }));
-});
+// gulp.task('serve', ['copy'], function () {
+//     // return gulp.src(paths.tmp)
+//     //     .pipe(webserver({
+//     //         port: 8080,
+//     //         livereload: true,
+//     //         fallback: './index.html'
+//     //     }));
+// });
 
 // Watch on changes in `src` folder
-gulp.task('watch', ['serve'], function () {
-    gulp.watch(paths.src, ['inject']);
+gulp.task('watch', ['copy'], function () {
+    gulp.watch(paths.src, ['copy']);
 });
 
 // Gulp default starting point
-gulp.task('default', ['watch']);
+gulp.task('default', ['watch'], function () {
+});
 
 gulp.task('dev', ['watch']);
 

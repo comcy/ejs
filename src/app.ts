@@ -1,5 +1,6 @@
 import * as express from 'express';
-var app = express();
+import * as path from 'path';
+var app = module.exports.app = exports.app = express();
 
 
 // set the view engine to ejs

@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
+    "target": "es5",
+    "module": "commonJs",
     "removeComments": true,
     "sourceMap": true,
     "sourceRoot": "./src",
@@ -11,8 +11,9 @@
     "experimentalDecorators": true,
     "declaration": true,
     "outDir": "./dist",
+    "strict": false,
     "lib": [
-      "es2016",
+      "es5",
       "dom"
     ]
   },
@@ -24,5 +25,6 @@
   "exclude": [
     "node_modules",
     "src/**/*.spec.ts*/"
-  ]
+  ],
+  "Files": ["*.ts"]
 }

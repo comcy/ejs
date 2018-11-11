@@ -12,10 +12,12 @@
         "tsc": "tsc",
         "rimraf:dist": "rimraf ./dist",
         "live:dev": "nodemon --watch src --exec \"npm run build && npm run start\"",
-        "start": "ts-node ./dist/server.js"
+        "start": "gulp build && ts-node ./dist/app.js",
+        "start:dev": "gulp && ts-node ./tmp/app.js",
+        "gulp:dev": "gulp clean && gulp dev",
+        "gulp:build": "gulp clean && gulp build"
     },
-    "main": "index",
-    "types": "index",
+    "main": "app.js",
     "dependencies": {
         "ejs": "^2.6.1",
         "minimist": "^1.2.0",
@@ -30,6 +32,7 @@
         "gulp": "^3.9.1",
         "gulp-clean-css": "^3.10.0",
         "gulp-concat": "^2.6.1",
+        "gulp-express": "^0.3.5",
         "gulp-htmlclean": "^2.7.22",
         "gulp-inject": "^4.3.2",
         "gulp-nodemon": "^2.4.1",
